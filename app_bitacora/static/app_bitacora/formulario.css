@@ -1,0 +1,51 @@
+/* Contenedor principal del formulario */
+.formulario-principal form {
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: var(--color-suave);
+    border: 1px solid var(--color-suave);
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Inputs y selects personalizados */
+.formulario-principal .form-control,
+.formulario-principal .form-select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid var(--color-suave);
+    border-radius: 5px;
+    font-size: 14px;
+    font-family: Arial, sans-serif;
+    background-color: var(--color-fondo-base);
+    box-sizing: border-box;
+}
+
+/* Enfoque de inputs */
+.formulario-principal .form-control:focus,
+.formulario-principal .form-select:focus {
+    border-color: var(--color-secundario);
+    outline: none;
+    box-shadow: 0 0 4px var(--color-secundario);
+}
+
+/* Botones */
+.formulario-principal form button {
+    background-color: var(--color-primario);
+    color: #ffffff;
+    font-size: 14px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+    width: 100%;
+}
+
+.formulario-principal form button:hover {
+    background-color: var(--color-secundario);
+}

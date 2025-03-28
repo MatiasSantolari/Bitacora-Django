@@ -1,0 +1,57 @@
+{% extends 'app_bitacora/base.html' %}
+
+{% block title %}
+    Mis Colecciones
+{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-md-9 mb-3">
+            <h2>Mis Colecciones</h2>
+        </div>
+        <div class="col-md-3 mb-3 text-end">
+            <form method="POST" action="{% url 'bitacora:agregar_coleccion' %}">
+                {% csrf_token %}
+                <button type="submit" style="margin: 10px;">Agregar Coleccion</button>
+            </form>
+        </div>
+    </div>
+
+
+
+    {% for coleccion in colecciones %}
+        <h1>{{coleccion.nombre_coleccion}}</h1>
+        <h3 style="color: var(--color-secundario)">{{ coleccion.detalle_coleccion }}</h3>
+        {% for entrada in coleccion.entradas.all %}
+            <ul>
+                <li class="card" style="margin: 15px; padding: 10px;">
+                    <p><strong>Detalle:</strong> {{ entrada.detalle_entrada }}</p>
+                    <p><strong>Fecha:</strong> {{ entrada.fecha_entrada }} <strong>Tipo:</strong> {{ entrada.tipo_entrada }} <strong>ID Entrada:</strong> {{ entrada.id }}</p>
+
+                    {% if entrada.imagen %}
+                        <img style="max-width: 100%; max-height: 400px; object-fit: contain; border-radius: 20px;" src="{{ entrada.imagen.url }}" alt="Imagen subida">
+                    {% else %}
+                        <p>No hay imagen disponible</p>
+                    {% endif %}
+                </li>
+            </ul>
+        {% endfor %}
+        <div class="row">
+            <div class="col-md-1 mb-3 text-first">
+                <form method="GET" action="{% url 'bitacora:editar_coleccion' coleccion.id %}">
+                    <button type="submit"> Editar </button>
+                </form>
+            </div>
+            <div class="col-md-1 mb-3 text-first">
+                <form action="{% url 'bitacora:eliminar_coleccion' coleccion.id %}" method="POST" style="display: inline;">
+                    {% csrf_token %}
+                    <button type="submit" onclick="return confirm('¿Estás seguro de que deseas eliminar esta coleccion?')"
+                            style="background-color: #d00000;; cursor: pointer;">
+                        Eliminar
+                    </button>
+                </form>
+            </div>
+        </div>
+        <hr>
+    {% endfor %}
+{% endblock %}

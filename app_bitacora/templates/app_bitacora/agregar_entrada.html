@@ -1,0 +1,35 @@
+{% extends 'app_bitacora/base.html' %}
+
+
+{% block title %}Agregar Entrada{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h2>Agregar una Entrada</h2>
+    <div class="formulario-principal">
+        <form method="post" enctype="multipart/form-data" action="{% url 'bitacora:agregar_entrada' %}">
+            {% csrf_token %}
+            <div class="form-control">
+                {{ form.detalle_entrada.label_tag }}
+                {{ form.detalle_entrada }}
+            </div>
+            <div class="form-control">
+                {{ form.fecha_entrada.label_tag }}
+                {{ form.fecha_entrada }}
+            </div>
+            <div class="form-select">
+                {{ form.tipo_entrada.label_tag }}
+                {{ form.tipo_entrada }}
+            </div>
+            <div class="form-control">
+                {{ form.imagen.label_tag }}
+                {{ form.imagen }}
+            </div>
+            <button type="submit" class="btn btn-primary">Confirmar</button>
+        </form>
+    </div>
+</div>
+{% include 'app_bitacora/messages.html' %}
+{% endblock %}
+
+

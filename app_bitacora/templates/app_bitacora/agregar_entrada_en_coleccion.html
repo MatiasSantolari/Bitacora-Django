@@ -1,0 +1,18 @@
+{% extends 'app_bitacora/base.html' %}
+
+{% block content %}
+<h2>Editar Colecciones de "{{ entrada.detalle_entrada }}"</h2>
+
+<form method="POST">
+    {% csrf_token %}
+    
+    <fieldset>
+        <legend>{{ form.colecciones.label }}</legend>
+        {{ form.colecciones }}
+    </fieldset>
+
+    <button type="submit">Guardar Cambios</button>
+</form>
+
+<a href="{% url 'bitacora:mis_entradas' %}">Volver</a>
+{% endblock %}

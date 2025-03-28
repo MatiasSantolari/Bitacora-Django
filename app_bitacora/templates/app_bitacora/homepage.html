@@ -1,0 +1,31 @@
+{% extends 'app_bitacora/base.html' %}
+
+{% block title %}
+    Home - Entradas de la Comunidad
+{% endblock %}
+
+{% block content %}
+    <!-- Contenido principal de la página -->
+    <h2>Entradas de la Comunidad</h2>
+
+    {% if entradas %}
+        <ul>
+            {% for entrada in entradas %}
+
+                    <li class="card" style="margin-bottom: 15px; padding: 10px;">
+                        <p><strong>Detalle:</strong> {{ entrada.detalle_entrada }}</p>
+                        <p><strong>Fecha:</strong> {{ entrada.fecha_entrada }} <strong>Tipo:</strong> {{ entrada.tipo_entrada }} <strong>Usuario:</strong> {{ entrada.usuario }}</p>
+
+                        {% if entrada.imagen %}
+                            <img style="max-width: 100%; max-height: 400px; object-fit: contain; border-radius: 20px;" src="{{ entrada.imagen.url }}" alt="Imagen subida">
+                        {% else %}
+                            <p>No hay imagen disponible</p>
+                        {% endif %}
+                    </li>
+
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No hay entradas públicas disponibles.</p>
+    {% endif %}
+{% endblock %}

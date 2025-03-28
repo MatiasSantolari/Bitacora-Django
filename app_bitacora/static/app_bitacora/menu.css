@@ -1,0 +1,52 @@
+/* Encabezado y navegación */
+header {
+    background-color: var(--color-primario);
+    padding: 10px 20px;
+    color: white;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+nav .logo {
+    display: flex;
+    align-items: center;
+}
+
+nav .logo img {
+    margin-right: 10px;
+}
+
+nav .menu a {
+    margin: 0 10px;
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+nav .icons {
+    display: inline-flex; /* Alineación como botón en el menú */
+    margin-left: 10px; /* Espaciado entre el logout y otros íconos */
+    justify-content: center;
+    align-items: center;
+}
+
+nav .icons button {
+    background-color: transparent; /* Fondo transparente para integrarlo al menú */
+    border: none; /* Sin bordes */
+    padding: 5px; /* Ajustar espacio interno */
+    cursor: pointer; /* Cursor de mano al pasar sobre el botón */
+}
+
+nav .icons button img {
+    width: 24px; /* Tamaño del ícono */
+    height: 24px;
+    transition: transform 0.2s ease-in-out; /* Animación al hacer hover */
+}
+
+nav .icons button:hover img {
+    transform: scale(1.1); /* Efecto de "zoom" */
+}

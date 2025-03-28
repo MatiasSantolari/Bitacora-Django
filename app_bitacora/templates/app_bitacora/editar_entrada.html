@@ -1,0 +1,37 @@
+{% extends 'app_bitacora/base.html' %}
+
+{% block title %}Editar Entrada{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h2>Editar una Entrada</h2>
+    <div class="formulario-principal">
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.non_field_errors }}
+            <div class="form-control">
+                {{ form.detalle_entrada.label_tag }}
+                {{ form.detalle_entrada }}
+                {{ form.detalle_entrada.errors }}
+            </div>
+            <div class="form-control">
+                {{ form.fecha_entrada.label_tag }}
+                {{ form.fecha_entrada }}
+                {{ form.fecha_entrada.errors }}
+            </div>
+            <div class="form-select">
+                {{ form.tipo_entrada.label_tag }}
+                {{ form.tipo_entrada }}
+                {{ form.tipo_entrada.errors }}
+            </div>
+            <div class="form-control">
+                {{ form.imagen.label_tag }}
+                {{ form.imagen }}
+                {{ form.imagen.errors }}
+            </div>
+            <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+        </form>
+    </div>
+</div>
+{% include 'app_bitacora/messages.html' %}
+{% endblock %}

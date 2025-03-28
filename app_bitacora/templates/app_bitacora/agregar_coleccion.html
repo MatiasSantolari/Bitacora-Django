@@ -1,0 +1,25 @@
+{% extends 'app_bitacora/base.html' %}
+
+
+{% block title %}Agregar Coleccion{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h2>Agregar una Coleccion</h2>
+    <div class="formulario-principal">
+        <form method="post" enctype="multipart/form-data" action="{% url 'bitacora:agregar_coleccion' %}">
+            {% csrf_token %}
+            <div class="form-control">
+                {{ form.nombre_coleccion.label_tag }}
+                {{ form.nombre_coleccion }}
+            </div>
+            <div class="form-control">
+                {{ form.detalle_coleccion.label_tag }}
+                {{ form.detalle_coleccion }}
+            </div>
+            <button type="submit" class="btn btn-primary">Confirmar</button>
+        </form>
+    </div>
+</div>
+{% include 'app_bitacora/messages.html' %}
+{% endblock %}

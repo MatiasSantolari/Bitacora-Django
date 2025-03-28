@@ -1,0 +1,27 @@
+{% extends 'app_bitacora/base.html' %}
+
+{% block title %}Editar Coleccion{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h2>Editar una Coleccion</h2>
+    <div class="formulario-principal">
+        <form method="post">
+            {% csrf_token %}
+            {{ form.non_field_errors }}
+            <div class="form-control">
+                {{ form.nombre_coleccion.label_tag }}
+                {{ form.nombre_coleccion }}
+                {{ form.nombre_coleccion.errors }}
+            </div>
+            <div class="form-control">
+                {{ form.detalle_coleccion.label_tag }}
+                {{ form.detalle_coleccion }}
+                {{ form.detalle_coleccion.errors }}
+            </div>
+            <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+        </form>
+    </div>
+</div>
+{% include 'app_bitacora/messages.html' %}
+{% endblock %}

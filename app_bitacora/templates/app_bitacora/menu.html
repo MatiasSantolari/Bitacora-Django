@@ -1,0 +1,28 @@
+{% load static %}
+<nav>
+    <div class="icons">
+        <form method="GET" action="{% url 'bitacora:pagina_principal' %}" style="display: inline;">
+            {% csrf_token %}
+            <button type="submit" style="border: none; background: none; padding: 0; cursor: pointer;">
+                <img src="{% static 'app_bitacora/images/icon_logo.png' %}" alt="Logo" style="width: 34px; height: 34px; object-fit: cover;">
+            </button>
+        </form>
+    </div>
+    <div class="menu">
+        <a href="{% url 'bitacora:mis_entradas' %}">Mis Entradas</a>
+        <a href="{% url 'bitacora:mis_colecciones' %}">Mis Colecciones</a>
+    </div>
+    <div class="icons">
+        <button>
+            <img src="{% static 'app_bitacora/images/icon_user.png' %}" alt="Perfil" style="width: 30px; height: 30px; object-fit: cover;">
+        </button>
+
+        <form method="POST" action="{% url 'bitacora:logout' %}" style="display: inline;">
+            {% csrf_token %}
+            <button type="submit" style="border: none; background: none; padding: 0; cursor: pointer;">
+                <img src="{% static 'app_bitacora/images/icon_logout.png' %}" alt="Salir" style="width: 24px; height: 24px; object-fit: cover;">
+            </button>
+        </form>
+
+    </div>
+</nav>

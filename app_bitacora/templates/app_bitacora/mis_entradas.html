@@ -1,0 +1,87 @@
+{% extends 'app_bitacora/base.html' %}
+
+{% block title %}
+    Mis Entradas
+{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-md-9 mb-3">
+            <h2>Mis Entradas</h2>
+        </div>
+        <div  class="col-md-3 mb-3 text-end">
+            <form method="POST" action="{% url 'bitacora:agregar_entrada' %}">
+                {% csrf_token %}
+                <button type="submit" style="margin: 10px;">Agregar Entrada</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Filtros de busqueda -->
+    <ul>
+        <li class="card" style="margin: 15px; padding: 10px; background-color: var(--color-enfasis);">
+            <form method="GET">
+                <div class="row">
+                    <div class="col-md-4 mb-3 text-center">
+                        <label>{{ form.coleccion.label }}</label>
+                        {{ form.coleccion }}
+                    </div>
+                    <div class="col-md-4 mb-3 text-center">
+                        <label>{{ form.tipo_entrada.label }}</label>
+                        {{ form.tipo_entrada }}
+                    </div>
+                    <div class="col-md-4 mb-3 text-center">
+                        <label>{{ form.busqueda_x_detalle_entrada.label }}</label>
+                        {{ form.busqueda_x_detalle_entrada }}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 mb-3 text-end">
+                        <button type="submit">Buscar 🔎</button>
+                    </div>
+                </div>
+            </form>
+        </li>
+    </ul>
+
+
+    <ul>
+        {% for entrada in entradas %}
+            <li class="card" style="margin: 15px; padding: 10px;">
+                <p><strong>Detalle:</strong> {{ entrada.detalle_entrada }}</p>
+                <p><strong>Fecha:</strong> {{ entrada.fecha_entrada }} <strong>Tipo:</strong> {{ entrada.tipo_entrada }} <strong>ID Entrada:</strong> {{ entrada.id }}</p>
+
+                {% if entrada.imagen %}
+                    <img style="max-width: 100%; max-height: 400px; object-fit: contain; border-radius: 20px;" src="{{ entrada.imagen.url }}" alt="Imagen subida">
+                {% else %}
+                    <p>No hay imagen disponible</p>
+                {% endif %}
+
+                <div class="row">
+                    <div class="col-md-1 mb-3 text-first">
+                        <form method="GET" action="{% url 'bitacora:editar_entrada' entrada.id %}">
+                            <button type="submit"> Editar </button>
+                        </form>
+                    </div>
+                    <div class="col-md-1 mb-3 text-first">
+                        <form action="{% url 'bitacora:eliminar_entrada' entrada.id %}" method="POST" style="display: inline;">
+                            {% csrf_token %}
+                            <button type="submit" onclick="return confirm('¿Estás seguro de que deseas eliminar esta entrada?')"
+                                    style="background-color: #d00000; cursor: pointer;">
+                                Eliminar
+                            </button>
+                        </form>
+                    </div>
+                    <div class="col-md-3 mb-3 text-first">
+                        <form method="GET" action="{% url 'bitacora:agregar_entrada_a_coleccion' entrada.id%}" style="display: inline;">
+                            {% csrf_token %}
+                            <button type="submit" style="background-color: gray; cursor: pointer; margin-left: 15px;">
+                                Agregar a coleccion
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock %}
