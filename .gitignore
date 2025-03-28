@@ -166,6 +166,14 @@ cython_debug/
 
 .env
 
+# Archivos de migraciones (opcional)
+app_bitacora/migrations/
+
+# Archivos específicos que no quiero subir al repo
+build.sh
+script_postgreSQL.py
+crear_BD_postgreSQL.py
+
 # PyCharm
 #  JetBrains specific template is maintained in a separate JetBrains.gitignore that can
 #  be found at https://github.com/github/gitignore/blob/main/Global/JetBrains.gitignore
